@@ -1,0 +1,153 @@
+.venue-map-container {
+  height: 100%;
+  position: relative;
+  background-color: #050505; /* Extra dark for map */
+}
+
+.map-overlay-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.map-overlay-header h2 {
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.floor-selector {
+  display: flex;
+  align-items: center;
+  background-color: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 4px 8px;
+  border-radius: var(--border-radius-pill);
+  gap: 8px;
+  pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floor-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.floor-btn.active {
+  background-color: var(--accent-primary);
+  color: #000;
+}
+
+.map-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.transform-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.transform-content {
+  width: 800px !important;
+  height: 600px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-map-container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+}
+
+.zoom-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.zoom-controls button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 30, 0.9);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Map Markers */
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.map-marker:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 20;
+}
+
+.marker-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.marker-label {
+  background-color: rgba(20, 20, 20, 0.9);
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+
+.marker-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.marker-time {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.map-marker.status-green .marker-dot { background-color: var(--status-green); }
+.map-marker.status-yellow .marker-dot { background-color: var(--status-yellow); }
+.map-marker.status-red .marker-dot { background-color: var(--status-red); }
+
+.map-marker.status-green .marker-time { color: var(--status-green); }
+.map-marker.status-yellow .marker-time { color: var(--status-yellow); }
+.map-marker.status-red .marker-time { color: var(--status-red); }
