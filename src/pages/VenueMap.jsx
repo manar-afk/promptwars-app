@@ -75,6 +75,6 @@ const VenueMap = React.memo(() => {
       </div>
     </div>
   );
-};
+});
 
 export default VenueMap;
