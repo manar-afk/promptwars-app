@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy package configurations and install dependencies safely
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application files
 COPY . .
@@ -29,5 +29,5 @@ COPY --from=builder /app/dist ./dist
 ENV PORT=8080
 EXPOSE 8080
 
-# Serve the static build
-CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:$PORT"]
+# Serve the static build (Shell form evaluates $PORT environment variable!)
+CMD serve -s dist -l tcp://0.0.0.0:$PORT
