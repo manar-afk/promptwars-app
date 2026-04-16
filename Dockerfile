@@ -1,5 +1,5 @@
-# Use the lightweight Node 19 Alpine image for maximum efficiency
-FROM node:19-alpine as builder
+# Use the lightweight Node 22 Alpine image for maximum efficiency
+FROM node:22-alpine as builder
 
 # Set working directory
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Use a very lightweight production image solely for serving the built static assets
-FROM node:19-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 
