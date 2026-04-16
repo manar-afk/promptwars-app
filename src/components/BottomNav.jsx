@@ -5,21 +5,21 @@ import './BottomNav.css';
 
 const BottomNav = () => {
   return (
-    <nav className="bottom-nav">
-      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/map">
-        <Map size={24} />
+    <nav className="bottom-nav" aria-label="Main Navigation">
+      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/map" aria-label="Venue Map">
+        <Map size={24} aria-hidden="true" />
         <span>Map</span>
       </NavLink>
-      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/">
-        <Clock size={24} />
+      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/" aria-label="Wait Times Dashboard">
+        <Clock size={24} aria-hidden="true" />
         <span>Wait Times</span>
       </NavLink>
-      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/wallet">
-        <Wallet size={24} />
+      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/wallet" aria-label="Digital Wallet">
+        <Wallet size={24} aria-hidden="true" />
         <span>Wallet</span>
       </NavLink>
-      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/profile">
-        <User size={24} />
+      <NavLink className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} to="/profile" aria-label="User Profile">
+        <User size={24} aria-hidden="true" />
         <span>Profile</span>
       </NavLink>
     </nav>

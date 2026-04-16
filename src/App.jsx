@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import NudgeAlert from './components/NudgeAlert';
-import Dashboard from './pages/Dashboard';
-import VenueMap from './pages/VenueMap';
-import RoutingView from './pages/RoutingView';
-import Placeholder from './pages/Placeholder';
 import './index.css';
+
+// Lazy-loaded route components for performance efficiency
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const VenueMap = lazy(() => import('./pages/VenueMap'));
+const RoutingView = lazy(() => import('./pages/RoutingView'));
+const Placeholder = lazy(() => import('./pages/Placeholder'));
 
 // Wrapper to decide whether to show bottom nav
 const AppContent = () => {
@@ -20,13 +22,15 @@ const AppContent = () => {
       <NudgeAlert />
 
       <main className="main-content" style={{ paddingBottom: showNav ? 'var(--bottom-nav-height)' : '0' }}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/map" element={<VenueMap />} />
-          <Route path="/wallet" element={<Placeholder title="Digital Wallet" />} />
-          <Route path="/profile" element={<Placeholder title="My Account" />} />
-          <Route path="/route" element={<RoutingView />} />
-        </Routes>
+        <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>Loading application...</div>}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/map" element={<VenueMap />} />
+            <Route path="/wallet" element={<Placeholder title="Digital Wallet" />} />
+            <Route path="/profile" element={<Placeholder title="My Account" />} />
+            <Route path="/route" element={<RoutingView />} />
+          </Routes>
+        </Suspense>
       </main>
 
       {showNav && <BottomNav />}

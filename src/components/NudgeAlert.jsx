@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { AlertCircle, X } from 'lucide-react';
 import { MOCK_USER_STATE, MOCK_CONGESTION } from '../data/mockData';
 import './NudgeAlert.css';
@@ -40,6 +41,10 @@ const NudgeAlert = ({ customMessage }) => {
       </button>
     </div>
   );
+};
+
+NudgeAlert.propTypes = {
+  customMessage: PropTypes.string,
 };
 
 export default NudgeAlert;

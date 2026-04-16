@@ -4,7 +4,7 @@ import { Layers } from 'lucide-react';
 import { MOCK_POIS, getWaitStatus } from '../data/mockData';
 import './VenueMap.css';
 
-const VenueMap = () => {
+const VenueMap = React.memo(() => {
   const [floor, setFloor] = useState(1);
 
   return (
@@ -12,10 +12,10 @@ const VenueMap = () => {
       {/* Map Header Overlay */}
       <div className="map-overlay-header">
         <h2>Interactive Map</h2>
-        <div className="floor-selector">
-          <Layers size={18} />
-          <button className={`floor-btn ${floor === 1 ? 'active' : ''}`} onClick={() => setFloor(1)}>L1</button>
-          <button className={`floor-btn ${floor === 2 ? 'active' : ''}`} onClick={() => setFloor(2)}>L2</button>
+        <div className="floor-selector" aria-label="Floor Selection" role="group">
+          <Layers size={18} aria-hidden="true" />
+          <button className={`floor-btn ${floor === 1 ? 'active' : ''}`} aria-pressed={floor === 1} aria-label="Floor 1" onClick={() => setFloor(1)}>L1</button>
+          <button className={`floor-btn ${floor === 2 ? 'active' : ''}`} aria-pressed={floor === 2} aria-label="Floor 2" onClick={() => setFloor(2)}>L2</button>
         </div>
       </div>
 
@@ -28,10 +28,10 @@ const VenueMap = () => {
         >
           {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
             <>
-              <div className="zoom-controls">
-                <button onClick={() => zoomIn()}>+</button>
-                <button onClick={() => zoomOut()}>-</button>
-                <button onClick={() => resetTransform()}>Reset</button>
+              <div className="zoom-controls" aria-label="Zoom Controls">
+                <button onClick={() => zoomIn()} aria-label="Zoom In">+</button>
+                <button onClick={() => zoomOut()} aria-label="Zoom Out">-</button>
+                <button onClick={() => resetTransform()} aria-label="Reset Zoom">Reset</button>
               </div>
               <TransformComponent wrapperClass="transform-wrapper" contentClass="transform-content">
                 <div className="svg-map-container">

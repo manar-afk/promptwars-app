@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getWaitStatus } from '../data/mockData';
 
 import './WaitTimeBadge.css';
@@ -12,6 +13,10 @@ const WaitTimeBadge = ({ waitTime }) => {
       <span className="wait-badge-label">MINS</span>
     </div>
   );
+};
+
+WaitTimeBadge.propTypes = {
+  waitTime: PropTypes.number.isRequired,
 };
 
 export default WaitTimeBadge;
